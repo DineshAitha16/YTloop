@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>230x YouTube 144p Autoplay Grid</title>
+<title>230x YouTube 144p Autoplay Loop</title>
 <style>
   body {
     margin: 0;
@@ -24,8 +24,8 @@
 </head>
 <body>
 <script>
-  const videoId = "4yKXbiQwRWE";
-  const count = 230; // number of instances
+  const videoId = "4yKXbiQwRWE";  // your video
+  const count = 230;               // number of instances
   const container = document.body;
 
   for (let i = 0; i < count; i++) {
@@ -35,7 +35,7 @@
     container.appendChild(iframe);
   }
 
-  // Auto-refresh every 10 minutes (600000 ms)
+  // 🔁 Auto-refresh page every 10 minutes (600000 ms)
   setTimeout(() => location.reload(), 600000);
 </script>
 </body>
