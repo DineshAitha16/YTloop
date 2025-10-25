@@ -3,66 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YouTube 144p Autoplay Loop</title>
+<title>230x YouTube 144p Autoplay Grid</title>
 <style>
   body {
     margin: 0;
     background: #000;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
-  .yt-box {
-    width: 260px;
-    height: 146px;
-    background: #000;
-    overflow: hidden;
-    border-radius: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 6px;
+    padding: 6px;
   }
   iframe {
     width: 100%;
-    height: 100%;
+    height: 113px;
     border: 0;
+    border-radius: 8px;
+    background: #000;
   }
 </style>
 </head>
 <body>
-  <div class="yt-box">
-    <div id="player"></div>
-  </div>
+<script>
+  const videoId = "4yKXbiQwRWE";
+  const count = 230; // number of instances
+  const container = document.body;
 
-  <script>
-    let tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    let firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  for (let i = 0; i < count; i++) {
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1`;
+    iframe.allow = "autoplay";
+    container.appendChild(iframe);
+  }
 
-    let player;
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        videoId: '4yKXbiQwRWE',
-        playerVars: {
-          autoplay: 1,
-          loop: 1,
-          mute: 1,
-          controls: 0,
-          modestbranding: 1,
-          rel: 0,
-          showinfo: 0,
-          playlist: '4yKXbiQwRWE'
-        },
-        events: {
-          'onReady': onPlayerReady
-        }
-      });
-    }
-
-    function onPlayerReady(event) {
-      event.target.setPlaybackQuality('small'); // forces 144p
-      event.target.playVideo();
-    }
-  </script>
+  // Auto-refresh every 10 minutes (600000 ms)
+  setTimeout(() => location.reload(), 600000);
+</script>
 </body>
 </html>
